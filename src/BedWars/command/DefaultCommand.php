@@ -242,7 +242,7 @@ class DefaultCommand extends PluginCommand
             $jsonData['teamInfo'][$teamName][strtolower($args[3]) . "Pos"] = $sender->getX() . ":" . $sender->getY() . ":" . $sender->getZ() . ":" . $sender->getYaw() . ":" . $sender->getPitch();
 
             file_put_contents($location, json_encode($jsonData));
-            $sender->sendMessage(\BedWars\BedWars::PREFIX . TextFormat::GREEN . "Property updated");
+            $sender->sendMessage(\BedWars\BedWars::PREFIX . TextFormat::GREEN . "成功更新");
             break;
             case "setbed";
             if(!$sender instanceof Player) {
@@ -272,7 +272,7 @@ class DefaultCommand extends PluginCommand
             }
 
             $this->getPlugin()->bedSetup[$sender->getRawUniqueId()] = ['game' => $gameName, 'team' => $teamName , 'step' => 1];
-            $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Select the bed by breaking it");
+            $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "请通过破坏床来选择队伍床");
             break;
             case "setgenerator";
             if(!$sender instanceof Player){
@@ -293,7 +293,7 @@ class DefaultCommand extends PluginCommand
 
             $generatorType = $args[2];
             if(!in_array($generatorType, array('iron', 'gold', 'emerald', 'diamond'))){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Generators: " . TextFormat::RED . "iron,gold,diamond,emerald");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "产矿机: " . TextFormat::RED . "iron,gold,diamond,emerald");
                 return;
             }
 
@@ -301,7 +301,7 @@ class DefaultCommand extends PluginCommand
             $arenaData['generatorInfo'][$gameName][] = ['type' => $generatorType, 'position' => Utils::vectorToString("", $sender), 'game'];
             $this->getPlugin()->writeArenaData($gameName, $arenaData);
 
-            $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Created new generator " . TextFormat::GREEN . "[game=" . $gameName . " | type=" . $generatorType . "]");
+            $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "成功新建产矿机 " . TextFormat::GREEN . "[game=" . $gameName . " | type=" . $generatorType . "]");
             break;
             case "best";
             if(!$sender instanceof Player) {
@@ -361,13 +361,13 @@ class DefaultCommand extends PluginCommand
      */
     private function sendUsage(CommandSender $sender) : void{
         $sender->sendMessage(TextFormat::BOLD . TextFormat::DARK_RED . "BedWars Commands");
-        $sender->sendMessage(TextFormat::GREEN . "/bedwars list " . TextFormat::YELLOW . "Display list of loaded games");
-        $sender->sendMessage(TextFormat::GREEN . "/bedwars create " . TextFormat::YELLOW . "Create new game");
-        $sender->sendMessage(TextFormat::GREEN . "/bedwars delete " . TextFormat::YELLOW . "Delete existing game");
-        $sender->sendMessage(TextFormat::GREEN . "/bedwars setlobby " . TextFormat::YELLOW . "Set spawning position of a game");
-        $sender->sendMessage(TextFormat::GREEN . "/bedwars setpos " . TextFormat::YELLOW . "Set position [spawn,shop,upgrade] of a team");
-        $sender->sendMessage(TextFormat::GREEN . "/bedwars setbed ". TextFormat::YELLOW . "Set bed position of a team");
-        $sender->sendMessage(TextFormat::GREEN . "/bedwars setgenerator " . TextFormat::YELLOW . "Set generator of a team");
+        $sender->sendMessage(TextFormat::GREEN . "/bedwars list " . TextFormat::YELLOW . "展现所有已加载的房间");
+        $sender->sendMessage(TextFormat::GREEN . "/bedwars create " . TextFormat::YELLOW . "新建一个房间");
+        $sender->sendMessage(TextFormat::GREEN . "/bedwars delete " . TextFormat::YELLOW . "删除一个已存在的房间");
+        $sender->sendMessage(TextFormat::GREEN . "/bedwars setlobby " . TextFormat::YELLOW . "设置一个房间的出生点");
+        $sender->sendMessage(TextFormat::GREEN . "/bedwars setpos " . TextFormat::YELLOW . "设置一个队伍的[出生点|商店|升级商店] [spawn,shop,upgrade]");
+        $sender->sendMessage(TextFormat::GREEN . "/bedwars setbed ". TextFormat::YELLOW . "设置一个床的位置");
+        $sender->sendMessage(TextFormat::GREEN . "/bedwars setgenerator " . TextFormat::YELLOW . "设置一个产矿机");
     }
 
     /**

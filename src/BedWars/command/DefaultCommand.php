@@ -140,7 +140,7 @@ class DefaultCommand extends PluginCommand
             $jsonData['teamInfo'][$args[2]] = ['spawnPos' => '', 'bedPos' => '', 'shopPos'];
 
             file_put_contents($location, json_encode($jsonData));
-            $sender->sendMessage(BedWars::PREFIX . TextFormat::GREEN . "Team added!");
+            $sender->sendMessage(BedWars::PREFIX . TextFormat::GREEN . "成功新增团队!");
             break;
             case "delete";
             if(count($args) < 2){
@@ -150,7 +150,7 @@ class DefaultCommand extends PluginCommand
 
             $gameName = $args[1];
             if(!in_array($gameName, array_keys($this->getPlugin()->games))) {
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Game called " . $gameName . " doesn't exist!");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "被称为 " . $gameName . " 的房间不存在!");
                 return;
             }
 
@@ -163,12 +163,12 @@ class DefaultCommand extends PluginCommand
             $gameObject->stop();
 
             unlink($this->getPlugin()->getDataFolder() . "arenas/" . $gameName . ".json");
-            $sender->sendMessage(BedWars::PREFIX . TextFormat::GREEN . "Arena has been deleted!");
+            $sender->sendMessage(BedWars::PREFIX . TextFormat::GREEN . "房间已被成功删除!");
 
             break;
             case "setlobby";
             if(!$sender instanceof Player){
-                $sender->sendMessage(TextFormat::RED . "This command can be executed only in game");
+                $sender->sendMessage(TextFormat::RED . "这个指令只能在游戏中使用");
                 return;
             }
 
@@ -246,7 +246,7 @@ class DefaultCommand extends PluginCommand
             break;
             case "setbed";
             if(!$sender instanceof Player) {
-                $sender->sendMessage(TextFormat::RED . "This command can be executed only in game");
+                $sender->sendMessage(TextFormat::RED . "这个指令只能在游戏中使用");
                 return;
             }
 
@@ -276,7 +276,7 @@ class DefaultCommand extends PluginCommand
             break;
             case "setgenerator";
             if(!$sender instanceof Player){
-                $sender->sendMessage(TextFormat::RED . "This command can be executed only in game");
+                $sender->sendMessage(TextFormat::RED . "这个指令只能在游戏中使用");
                 return;
             }
 
@@ -305,7 +305,7 @@ class DefaultCommand extends PluginCommand
             break;
             case "best";
             if(!$sender instanceof Player) {
-                $sender->sendMessage(TextFormat::RED . "This command can be executed only in game");
+                $sender->sendMessage(TextFormat::RED . "这个指令只能在游戏中使用");
                 return;
             }
 
@@ -322,7 +322,7 @@ class DefaultCommand extends PluginCommand
 
             case "join";
             if(!$sender instanceof Player) {
-                $sender->sendMessage(TextFormat::RED . "This command can be executed only in game");
+                $sender->sendMessage(TextFormat::RED . "这个指令只能在游戏中使用");
                 return;
             }
 

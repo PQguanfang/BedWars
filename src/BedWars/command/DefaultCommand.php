@@ -181,7 +181,7 @@ class DefaultCommand extends PluginCommand
 
             $location = $this->getPlugin()->getDataFolder() . "arenas/" . $gameName . ".json";
             if(!is_file($location)){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Arena doesn't exist");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "这个房间不存在");
                 return;
             }
 
@@ -220,7 +220,7 @@ class DefaultCommand extends PluginCommand
             $gameName = $args[1];
             $location = $this->getPlugin()->getDataFolder() . "arenas/" . $gameName . ".json";
             if(!is_file($location)){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Arena doesn't exist");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "这个房间不存在");
                 return;
             }
 
@@ -258,7 +258,7 @@ class DefaultCommand extends PluginCommand
             $gameName = $args[1];
             $location = $this->getPlugin()->getDataFolder() . "arenas/" . $gameName . ".json";
             if(!is_file($location)){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Arena doesn't exist");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "这个房间不存在");
                 return;
             }
 
@@ -287,7 +287,7 @@ class DefaultCommand extends PluginCommand
 
             $gameName = $args[1];
             if(!$this->getPlugin()->gameExists($gameName)){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Arena doesn't exist");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "这个房间不存在");
                 return;
             }
 
@@ -333,7 +333,7 @@ class DefaultCommand extends PluginCommand
             $gameName = $args[1];
 
             if(!isset($this->getPlugin()->arenas[$gameName])){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Arena doesn't exist");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "这个房间不存在");
                 return;
             }
 
@@ -341,7 +341,7 @@ class DefaultCommand extends PluginCommand
             break;
             case "quit";
             if(!$sender instanceof Player) {
-                $sender->sendMessage(TextFormat::RED . "This command can be executed only in game");
+                $sender->sendMessage(TextFormat::RED . "这个指令只能在游戏中使用");
                 return;
             }
 

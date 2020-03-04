@@ -64,7 +64,7 @@ class BedWars extends PluginBase
 
             if(!$this->validateGame($jsonData)){
                 $arenaName = basename($fileContents, ".json");
-                $this->getLogger()->info(self::PREFIX . TextFormat::YELLOW . "Failed to load arena " . $arenaName . " because it's data are corrupted!");
+                $this->getLogger()->info(self::PREFIX . TextFormat::YELLOW . "加载房间 " . $arenaName . " 失败，因为它的配置信息是损坏的!");
                 continue;
             }
 
@@ -209,9 +209,9 @@ class BedWars extends PluginBase
                 public function getStatus(int $state) : string{
                     switch($state){
                         case 0;
-                        return TextFormat::YELLOW . "Touch Me";
+                        return TextFormat::YELLOW . "点我加入";
                         case 1;
-                        return TextFormat::RED . "InGame";
+                        return TextFormat::RED . "游戏中";
                     }
                     return "";
                 }

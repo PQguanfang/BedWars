@@ -230,12 +230,12 @@ class DefaultCommand extends PluginCommand
 
             $teamName = $args[2];
             if(!isset($jsonData['teamInfo'][$args[2]])){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Team doesn't exist!");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "这个队伍不存在!");
                 return;
             }
 
             if(!in_array(strtolower($args[3]), array('spawn', 'shop', 'upgrade'))){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Invalid identifier");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "无效值");
                 return;
             }
 
@@ -267,7 +267,7 @@ class DefaultCommand extends PluginCommand
 
             $teamName = $args[2];
             if(!isset($jsonData['teamInfo'][$args[2]])){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Team doesn't exists!");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "这个队伍不存在!");
                 return;
             }
 

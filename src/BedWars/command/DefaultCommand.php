@@ -60,7 +60,7 @@ class DefaultCommand extends PluginCommand
 
         switch(strtolower($args[0])){
             case "list";
-            $sender->sendMessage(TextFormat::BOLD . TextFormat::DARK_RED . "Arena List");
+            $sender->sendMessage(TextFormat::BOLD . TextFormat::DARK_RED . "房间列表");
             foreach($this->getPlugin()->games as $game){
                 $sender->sendMessage(TextFormat::GREEN . $game->getName());
                 //todo: add other info
@@ -68,7 +68,7 @@ class DefaultCommand extends PluginCommand
             break;
             case "create";
             if(!$sender instanceof Player){
-                $sender->sendMessage(TextFormat::RED . "This command can be executed only in game");
+                $sender->sendMessage(TextFormat::RED . "这个指令只能在游戏中使用");
                 return;
             }
 
@@ -79,16 +79,16 @@ class DefaultCommand extends PluginCommand
 
             $gameName = $args[1];
             if(in_array($gameName, array_keys($this->getPlugin()->games))){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Game called " . $gameName . " already exists!");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "被称为 " . $gameName . " 的房间已存在!");
                 return;
             }
 
             if(!is_int(intval($args[2]))){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "minPlayers must be a number!");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "minPlayers 值必须是整数!");
             }
 
             if(!is_int(intval($args[3]))){
-                    $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "playersPerTeam must be a number!");
+                    $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "playersPerTeam 值必须是整数!");
             }
 
             $minPlayers = intval($args[2]);
@@ -107,7 +107,7 @@ class DefaultCommand extends PluginCommand
             ];
 
             new Config($this->getPlugin()->getDataFolder() . "arenas/" . $gameName . ".json", Config::JSON, $dataStructure);
-            $sender->sendMessage(BedWars::PREFIX . TextFormat::GREEN . "Arena created!");
+            $sender->sendMessage(BedWars::PREFIX . TextFormat::GREEN . "成功创建房间!");
 
             break;
             case "addteam";
@@ -120,7 +120,7 @@ class DefaultCommand extends PluginCommand
 
             $location = $this->getPlugin()->getDataFolder() . "arenas/" . $gameName . ".json";
             if(!is_file($location)){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Arena doesn't exist");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "房间不存在");
                    return;
             }
 
@@ -128,12 +128,12 @@ class DefaultCommand extends PluginCommand
             $jsonData = json_decode($fileContent, true);
 
             if(count($jsonData['teamInfo']) >= count(BedWars::TEAMS)){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "You've reached the limit of teams per game!");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "您的设置已超过正常游戏的每队人数，请更换一个更小的值!");
                 return;
             }
 
             if(isset($jsonData['teamInfo'][$args[2]])){
-                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "Team already exists!");
+                $sender->sendMessage(BedWars::PREFIX . TextFormat::YELLOW . "这个队伍已存在!");
                 return;
             }
 
